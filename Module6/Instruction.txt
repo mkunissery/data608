@@ -1,0 +1,13 @@
+1. Copy the below 3 files to a folder MK_M6 (any name) in your local directory
+js_in_webpage.html
+presidents.csv
+server.js
+
+2. go to command prompt (in windows) to the folder location MK_M6
+type the below one after the other.
+	npm install connect serve-static
+	node server.js
+
+3. type http://localhost:8080/js_in_webpage.html  in any browser (chrome tested)
+
+
