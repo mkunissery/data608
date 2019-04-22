@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<style>
+td,th {
+  border: 1px solid black;
+}
+table {
+    border-collapse: collapse;
+}
+	
+</style>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script language="javascript">
+jpresidentobj = null 
+jcolor = 0
+function stringrev(obj)
+{
+setDivColor()
+str = obj.value
+dvresult.innerText = str.split("").reverse().join("");
+}
+function clearobj(obj)
+{
+	obj.value = ""
+}
+
+function printTable(obj)
+{	setDivColor()
+	jmultiplier = obj.value 
+	str = "<table width=90% height=50%>"
+	jrows = 5.00 
+	jcols = 4.00
+	jmult = 1
+	for(i=0;i<jrows;i++)
+	{
+	str = str + "<tr>"
+		for(j=0;j<jcols;j++)
+		{
+			str = str + "<td>" + (jmultiplier*jmult++) + "</td>"
+		}
+	str = str + "</tr>"
+	}
+	str = str + "</table>"
+	dvresult.innerHTML = str
+}
+
+function setDivColor()
+{
+dvresult.innerHTML = ""
+if(jcolor>9){jcolor=0}
+	divcolor = "#f7f7a" + jcolor.toString()
+	dvresult.style.backgroundColor=divcolor
+}
+
+function d3test(obj)
+{
+	jresult = false
+	setDivColor()
+	president = obj.value 
+	data = jpresidentobj
+	for (var i = 0; i < data.length; i++) {
+		if(data[i].Name == president){
+			dvresult.innerHTML = "<p>" + president + "'s weight = " + data[i].Weight + " and height=" + data[i].Height + "</p>"
+			jresult = true
+			}
+		};
+	if(!jresult)
+		dvresult.innerHTML = "Sorry, No results found for the name" + president
+	
+}
+
+d3.csv("presidents.csv", function(data) {
+	jpresidentobj = data
+});
+
+
+</script>
+
+</HEAD>
+
+
+<BODY >
+<FORM name="frmdata608m6" >
+<Table width = 100% height=100%>
+<TR height=10% bgcolor="#96b6e8"><TD colspan=2 ALIGN="center"> <FONT SIZE=10>DATA 608 MODULE 6 </FONT></TD></TR>
+<TR height=90%>
+<TD width=50% bgcolor="#ced3db" border-width="thin">
+<P> PART 1A: String Reversal : <input type ="text" onChange=stringrev(this) value="Enter any text..." width = 100 onClick=clearobj(this)>
+<BR><BR><BR>
+PART 1B: Enter any number : <input type ="text" onChange=printTable(this) value="Enter any number" width = 100 onClick=clearobj(this)>
+<BR><BR><BR>
+PART @: Enter any Presidents name :<input type ="text" onChange=d3test(this) value="Enter Presidents name" width = 100 onClick=clearobj(this)>
+<BR><BR><BR>
+</td>
+<td width=50% bgcolor='white' align="center">
+<Div id="dvresult" height=100% ></div>
+</td>
+</tr>
+</table>
+
+
+
+</form>
+
+
+
+</BODY>
+
+
+
+
+
+</HTML>
